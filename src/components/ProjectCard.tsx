@@ -59,10 +59,10 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </div>
           )}
 
-          {project.stars > 0 && (
+          {project.formations > 0 && (
             <div className="flex items-center bg-github-dark px-2 py-1 rounded-full">
               <Star size={14} className="mr-1" />
-              <span>{project.stars}</span>
+              <span>{project.formations}</span>
             </div>
           )}
 

@@ -19,7 +19,8 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/experiences" element={<Index />} />
           <Route path="/projects" element={<Index />} />
-          <Route path="/stars" element={<Index />} />
+          <Route path="/formations" element={<Index />} />
+          <Route path="/formation/:id" element={<Index />} />
           <Route path="/project/:id" element={<Index />} />
           <Route path="/experience/:id" element={<Index />} />
           <Route path="*" element={<NotFound />} />

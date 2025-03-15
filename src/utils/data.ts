@@ -6,7 +6,7 @@ export interface Repository {
   language: string;
   languageColor: string;
   isPublic: boolean;
-  stars: number;
+  formations: number;
   forks: number;
   lastUpdated: string;
 }
@@ -29,13 +29,25 @@ export interface Project {
   language: string;
   languageColor: string;
   isPublic: boolean;
-  stars: number;
+  formations: number;
   forks: number;
   lastUpdated: string;
   demoLink?: string;
   repoLink?: string;
 }
 
+export interface Formation {
+	id: number;
+	type: string;
+	institution: string;
+	period: string;
+	begin: string;
+	end: string;
+	description: string;
+	diplome: string;
+	institutionLogo?: string;
+	institutionLink?: string;
+}
 export interface ProfileData {
   name: string;
   username: string;
@@ -46,11 +58,12 @@ export interface ProfileData {
   contributions: number;
   experiencesCount: number;
   projectsCount: number;
-  starsCount: number;
+  formationsCount: number;
   popularProjects: Project[];
   popularExperiences: Experience[];
   experiences: Experience[];
   projects: Project[];
+  formations: Formation[];
   skills: string[];
 }
 
@@ -85,7 +98,7 @@ export const profileData: ProfileData = {
   contributions: 294,
   experiencesCount: 4,
   projectsCount: 6,
-  starsCount: 3,
+  formationsCount: 3,
   skills: ["JavaScript", "TypeScript", "React", "Node.js", "CSS", "HTML", "Next.js", "Tailwind CSS"],
   popularProjects: [
     {
@@ -95,7 +108,7 @@ export const profileData: ProfileData = {
       language: "TypeScript",
       languageColor: languageColors["TypeScript"],
       isPublic: true,
-      stars: 25,
+      formations: 25,
       forks: 8,
 	  image: "/images.jpeg",
       lastUpdated: "Updated 2 days ago",
@@ -109,7 +122,7 @@ export const profileData: ProfileData = {
       language: "TypeScript",
       languageColor: languageColors["TypeScript"],
       isPublic: true,
-      stars: 127,
+      formations: 127,
       forks: 42,
 	  image: "/profile.png",
       lastUpdated: "Updated 5 days ago",
@@ -143,9 +156,9 @@ export const profileData: ProfileData = {
       language: "JavaScript",
       languageColor: languageColors["JavaScript"],
       isPublic: true,
-      stars: 78,
+      formations: 78,
       forks: 24,
-	  image: "/profile.png",
+	  image: "/images.jpeg",
       lastUpdated: "Updated 2 weeks ago",
       demoLink: "https://nextjs-blog-demo.com",
       repoLink: "https://github.com/johndoe/nextjs-blog-starter"
@@ -157,9 +170,9 @@ export const profileData: ProfileData = {
       language: "HTML",
       languageColor: languageColors["HTML"],
       isPublic: true,
-      stars: 12,
+      formations: 12,
       forks: 3,
-	  image: "/profile.png",
+	  image: "/images.jpeg",
       lastUpdated: "Updated 3 weeks ago",
       repoLink: "https://github.com/johndoe/html-css-playground"
     },
@@ -170,9 +183,9 @@ export const profileData: ProfileData = {
       language: "JavaScript",
       languageColor: languageColors["JavaScript"],
       isPublic: true,
-      stars: 54,
+      formations: 54,
       forks: 16,
-	  image: "/profile.png",
+	  image: "/images.jpeg",
       lastUpdated: "Updated 1 month ago",
       repoLink: "https://github.com/johndoe/node-api-toolkit"
     },
@@ -183,9 +196,9 @@ export const profileData: ProfileData = {
       language: "Python",
       languageColor: languageColors["Python"],
       isPublic: true,
-      stars: 32,
+      formations: 32,
       forks: 9,
-	  image: "/profile.png",
+	  image: "/images.jpeg",
       lastUpdated: "Updated 2 months ago",
       repoLink: "https://github.com/johndoe/python-data-analysis"
     }
@@ -223,6 +236,44 @@ export const profileData: ProfileData = {
       description: "Developed websites for local businesses and non-profit organizations. Enhanced skills in client communication and project management.",
       skills: ["WordPress", "HTML", "CSS", "JavaScript"]
     }
+  ],
+  formations: [
+	{
+		id: 1,
+		type: "Formation",
+		institution: "Wild Code School",
+		period: "2021 - 2022",
+		begin: "2021-09-13",
+		end: "2022-02-25",
+		description: "Formation Développeur Web et Web Mobile",
+		diplome: "Développeur Web et Web Mobile",
+		institutionLogo: "/images.jpeg",
+		institutionLink: "https://www.wildcodeschool.com/fr-FR"
+	},
+	{
+		id: 2,
+		type: "Formation",
+		institution: "OpenClassrooms",
+		period: "2021 - 2022",
+		begin: "2021-09-13",
+		end: "2022-02-25",
+		description: "Formation Développeur Web",
+		diplome: "Développeur Web",
+		institutionLogo: "/images.jpeg",
+		institutionLink: "https://openclassrooms.com/fr/"
+	},
+	{
+		id: 3,
+		type: "Formation",
+		institution: "OpenClassrooms",
+		period: "2021 - 2022",
+		begin: "2021-09-13",
+		end: "2022-02-25",
+		description: "Formation Développeur Web",
+		diplome: "Développeur Web",
+		institutionLogo: "/images.jpeg",
+		institutionLink: "https://openclassrooms.com/fr/"
+	}
   ]
 };
 

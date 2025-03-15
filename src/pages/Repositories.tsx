@@ -6,11 +6,11 @@ import { profileData } from '@/utils/data';
 
 const Repositories = () => {
   const [searchQuery, setSearchQuery] = useState('');
-  
+
   const allRepositories = profileData.popularProjects.concat(profileData.projects);
-  
-  const filteredRepositories = searchQuery 
-    ? allRepositories.filter(repo => 
+
+  const filteredRepositories = searchQuery
+    ? allRepositories.filter(repo =>
         repo.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (repo.description && repo.description.toLowerCase().includes(searchQuery.toLowerCase()))
       )
@@ -31,7 +31,7 @@ const Repositories = () => {
             <Search size={16} />
           </div>
         </div>
-        
+
         <div className="flex space-x-2 w-full md:w-auto">
           <select className="bg-github-medium border border-github-light rounded-md py-1.5 px-3 text-sm text-github-text cursor-pointer">
             <option value="language">Language</option>
@@ -39,16 +39,16 @@ const Repositories = () => {
             <option value="javascript">JavaScript</option>
             <option value="typescript">TypeScript</option>
           </select>
-          
+
           <select className="bg-github-medium border border-github-light rounded-md py-1.5 px-3 text-sm text-github-text cursor-pointer">
             <option value="sort">Sort</option>
             <option value="newest">Newest</option>
-            <option value="stars">Most stars</option>
+            <option value="formations">Most formations</option>
             <option value="name">Name</option>
           </select>
         </div>
       </div>
-      
+
       <div className="space-y-4">
         {filteredRepositories.map((repository, index) => (
           <div key={repository.id} className={`slide-up ${index > 0 ? `delay-${Math.min(index, 3) * 100}` : ''}`}>

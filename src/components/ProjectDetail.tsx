@@ -95,7 +95,7 @@ const ProjectDetail: React.FC = () => {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
           <div className="flex items-center space-x-2">
             <Star size={16} className="text-github-text" />
-            <span className="text-github-text">{project.stars} stars</span>
+            <span className="text-github-text">{project.formations} formations</span>
           </div>
           <div className="flex items-center space-x-2">
             <GitFork size={16} className="text-github-text" />

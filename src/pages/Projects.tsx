@@ -20,32 +20,32 @@ const Projects = () => {
   const [language, setLanguage] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
   const [filterVisible, setFilterVisible] = useState(false);
-  
+
   const allProjects = profileData.popularProjects.concat(profileData.projects);
-  
+
   // Get unique languages from projects
   const uniqueLanguages = useMemo(() => {
     const langs = new Set(allProjects.map(proj => proj.language));
     return ['all', ...Array.from(langs)];
   }, [allProjects]);
-  
+
   // Sort and filter projects
   const filteredProjects = useMemo(() => {
     let filtered = [...allProjects];
-    
+
     // Apply search filter
     if (searchQuery) {
-      filtered = filtered.filter(project => 
+      filtered = filtered.filter(project =>
         project.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         (project.description && project.description.toLowerCase().includes(searchQuery.toLowerCase()))
       );
     }
-    
+
     // Apply language filter
     if (language !== 'all') {
       filtered = filtered.filter(project => project.language === language);
     }
-    
+
     // Apply sorting
     switch (sortBy) {
       case 'newest':
@@ -53,14 +53,14 @@ const Projects = () => {
           // Extract the time period from lastUpdated
           const timeA = a.lastUpdated.match(/(\d+) (day|week|month|year)s? ago/);
           const timeB = b.lastUpdated.match(/(\d+) (day|week|month|year)s? ago/);
-          
+
           if (!timeA || !timeB) return 0;
-          
+
           const valueA = parseInt(timeA[1]);
           const valueB = parseInt(timeB[1]);
           const unitA = timeA[2];
           const unitB = timeB[2];
-          
+
           // Calculate approximate days
           const getDays = (value: number, unit: string) => {
             switch(unit) {
@@ -71,14 +71,14 @@ const Projects = () => {
               default: return value;
             }
           };
-          
+
           const daysA = getDays(valueA, unitA);
           const daysB = getDays(valueB, unitB);
-          
+
           return daysA - daysB;
         });
-      case 'stars':
-        return filtered.sort((a, b) => b.stars - a.stars);
+      case 'formations':
+        return filtered.sort((a, b) => b.formations - a.formations);
       case 'name':
         return filtered.sort((a, b) => a.name.localeCompare(b.name));
       default:
@@ -102,10 +102,10 @@ const Projects = () => {
               <Search size={16} />
             </div>
           </div>
-          
+
           <div className="flex space-x-2 w-full md:w-auto">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-github-light bg-github-medium text-github-text hover:bg-github-dark"
               onClick={() => setFilterVisible(!filterVisible)}
             >
@@ -114,7 +114,7 @@ const Projects = () => {
             </Button>
           </div>
         </div>
-        
+
         {filterVisible && (
           <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 p-4 bg-github-dark border border-github-light rounded-md">
             <div className="w-full md:w-1/2">
@@ -134,7 +134,7 @@ const Projects = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="w-full md:w-1/2">
               <label className="block text-sm text-github-text mb-1">Sort by</label>
               <Select value={sortBy} onValueChange={setSortBy}>
@@ -144,7 +144,7 @@ const Projects = () => {
                 <SelectContent className="bg-github-medium border-github-light">
                   <SelectGroup>
                     <SelectItem value="newest" className="text-github-text">Newest first</SelectItem>
-                    <SelectItem value="stars" className="text-github-text">Most stars</SelectItem>
+                    <SelectItem value="formations" className="text-github-text">Most formations</SelectItem>
                     <SelectItem value="name" className="text-github-text">Name</SelectItem>
                   </SelectGroup>
                 </SelectContent>
@@ -152,7 +152,7 @@ const Projects = () => {
             </div>
           </div>
         )}
-        
+
         {(language !== 'all' || sortBy !== 'newest' || searchQuery) && (
           <div className="flex flex-wrap gap-2 mt-2">
             {language !== 'all' && (
@@ -162,7 +162,7 @@ const Projects = () => {
             )}
             {sortBy !== 'newest' && (
               <Badge variant="outline" className="bg-github-dark text-github-blue border-github-blue">
-                Sort: {sortBy === 'stars' ? 'Most stars' : 'Name'}
+                Sort: {sortBy === 'formations' ? 'Most formations' : 'Name'}
               </Badge>
             )}
             {searchQuery && (
@@ -173,7 +173,7 @@ const Projects = () => {
           </div>
         )}
       </div>
-      
+
       <div className="space-y-4">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project, index) => (

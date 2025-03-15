@@ -25,26 +25,26 @@ const RepositoryCard: React.FC<RepositoryCardProps> = ({ repository }) => {
           </span>
         </div>
       </div>
-      
+
       <div className="flex items-center justify-between mt-4 text-xs text-github-text">
         <div className="flex items-center">
           {repository.language && (
             <>
-              <span 
-                className="language-dot" 
+              <span
+                className="language-dot"
                 style={{ backgroundColor: repository.languageColor }}
               ></span>
               <span className="mr-3">{repository.language}</span>
             </>
           )}
-          
-          {repository.stars > 0 && (
+
+          {repository.formations > 0 && (
             <a href="#" className="flex items-center mr-3 hover:text-github-blue transition-all-200">
               <Star size={14} className="mr-1" />
-              <span>{repository.stars}</span>
+              <span>{repository.formations}</span>
             </a>
           )}
-          
+
           {repository.forks > 0 && (
             <a href="#" className="flex items-center hover:text-github-blue transition-all-200">
               <GitFork size={14} className="mr-1" />
@@ -52,7 +52,7 @@ const RepositoryCard: React.FC<RepositoryCardProps> = ({ repository }) => {
             </a>
           )}
         </div>
-        
+
         <span className="text-github-text">{repository.lastUpdated}</span>
       </div>
     </div>
