@@ -2,6 +2,9 @@
 
 ## Project info
 
+# Portfolio Link
+[Visit my portfolio](https://tsilavina-portfolio.onrender.com)
+
 ## How can I run it?
 
 The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
