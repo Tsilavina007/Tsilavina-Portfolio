@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 const ProfileSidebar = () => {
   return (
-    <aside className="w-full md:w-[396px] px-4 py-6 h-fit md:py-8 sticky -top-10 z-10">
+    <aside className="w-full md:w-[396px] px-4 py-6 h-fit md:py-8 z-10">
       <div className="relative mb-4 fade-in">
         <img
           src={profileData.avatar}

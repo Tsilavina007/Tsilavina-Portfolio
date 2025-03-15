@@ -77,7 +77,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </CardContent>
 
       {(project.demoLink || project.repoLink) && (
-        <CardFooter className="px-4 pt-0 pb-4 gap-3 border-t border-github-light bg-github-dark/30">
+        <CardFooter className="px-4 pt-4 pb-4 gap-3 border-t border-github-light bg-github-dark/30">
           {project.demoLink && (
             <a
               href={project.demoLink}
