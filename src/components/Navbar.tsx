@@ -76,7 +76,7 @@ const Navbar = () => {
 			)}
 		</div>
 		  <div className="relative" onBlur={() => setIsDropdownProfilOpen(false)} tabIndex={0}>
-			<Link to="/" className="flex items-center text-github-text hover:text-white transition-all-200" onClick={() => setIsDropdownProfilOpen(!isDropdownProfilOpen)}>
+			<Link className="flex items-center text-github-text hover:text-white transition-all-200" onClick={() => setIsDropdownProfilOpen(!isDropdownProfilOpen)} to={''}>
 			  <Avatar className="h-8 w-8 rounded-full overflow-hidden border border-github-light">
 				<img src={profileData.avatar} alt={profileData.name} className="object-cover" />
 			  </Avatar>

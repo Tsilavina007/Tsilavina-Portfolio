@@ -20,6 +20,12 @@ const TabNavigation = () => {
       path: '/',
       icon: <Book size={16} className="mr-2" />,
     },
+	{
+		name: 'Formations',
+		path: '/formations',
+		icon: <Star size={16} className="mr-2" />,
+		count: profileData.formationsCount,
+	},
     {
       name: 'Experiences',
       path: '/experiences',
@@ -31,12 +37,6 @@ const TabNavigation = () => {
       path: '/projects',
       icon: <Package size={16} className="mr-2" />,
       count: profileData.projectsCount,
-    },
-    {
-      name: 'Formations',
-      path: '/formations',
-      icon: <Star size={16} className="mr-2" />,
-      count: profileData.formationsCount,
     },
   ];
 
