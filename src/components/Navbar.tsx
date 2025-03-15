@@ -43,7 +43,7 @@ const Navbar = () => {
 		<Link to="https://github.com/tsilavina007" target="_blank" className="text-github-text hover:text-white transition-all-200">
 			<Github size={20} />
 		</Link>
-		<Link to="https://github.com/tsilavina007" target="_blank" className="text-github-text hover:text-white transition-all-200">
+		<Link to="https://linkedin.com/in/tsilandr" target="_blank" className="text-github-text hover:text-white transition-all-200">
 			<LinkedinIcon size={20} />
 		</Link>
 		<button className="text-github-text hover:text-white transition-all-200">
