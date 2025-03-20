@@ -20,35 +20,35 @@ const Experiences = () => {
   const [type, setType] = useState('all');
   const [sortBy, setSortBy] = useState('newest');
   const [filterVisible, setFilterVisible] = useState(false);
-  
+
   const allExperiences = profileData.experiences;
-  
+
   // Get unique job types from experiences
   const uniqueTypes = useMemo(() => {
     const types = new Set(allExperiences.map(exp => exp.role.split(' ')[0]));
     return ['all', ...Array.from(types)];
   }, [allExperiences]);
-  
+
   // Sort and filter experiences
   const filteredExperiences = useMemo(() => {
     let filtered = [...allExperiences];
-    
+
     // Apply search filter
     if (searchQuery) {
-      filtered = filtered.filter(exp => 
+      filtered = filtered.filter(exp =>
         exp.company.toLowerCase().includes(searchQuery.toLowerCase()) ||
         exp.role.toLowerCase().includes(searchQuery.toLowerCase()) ||
         exp.description.toLowerCase().includes(searchQuery.toLowerCase())
       );
     }
-    
+
     // Apply type filter
     if (type !== 'all') {
-      filtered = filtered.filter(exp => 
+      filtered = filtered.filter(exp =>
         exp.role.toLowerCase().includes(type.toLowerCase())
       );
     }
-    
+
     // Apply sorting
     switch (sortBy) {
       case 'newest':
@@ -71,7 +71,7 @@ const Experiences = () => {
   }, [allExperiences, searchQuery, type, sortBy]);
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-4">
       <div className="flex flex-col space-y-4 mb-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 md:space-x-4">
           <div className="w-full md:w-auto flex-grow relative">
@@ -86,10 +86,10 @@ const Experiences = () => {
               <Search size={16} />
             </div>
           </div>
-          
+
           <div className="flex space-x-2 w-full md:w-auto">
-            <Button 
-              variant="outline" 
+            <Button
+              variant="outline"
               className="border-github-light bg-github-medium text-github-text hover:bg-github-dark"
               onClick={() => setFilterVisible(!filterVisible)}
             >
@@ -98,7 +98,7 @@ const Experiences = () => {
             </Button>
           </div>
         </div>
-        
+
         {filterVisible && (
           <div className="flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-3 p-4 bg-github-dark border border-github-light rounded-md">
             <div className="w-full md:w-1/2">
@@ -118,7 +118,7 @@ const Experiences = () => {
                 </SelectContent>
               </Select>
             </div>
-            
+
             <div className="w-full md:w-1/2">
               <label className="block text-sm text-github-text mb-1">Sort by</label>
               <Select value={sortBy} onValueChange={setSortBy}>
@@ -136,7 +136,7 @@ const Experiences = () => {
             </div>
           </div>
         )}
-        
+
         {(type !== 'all' || sortBy !== 'newest' || searchQuery) && (
           <div className="flex flex-wrap gap-2 mt-2">
             {type !== 'all' && (
@@ -157,7 +157,7 @@ const Experiences = () => {
           </div>
         )}
       </div>
-      
+
       <div className="space-y-4">
         {filteredExperiences.length > 0 ? (
           filteredExperiences.map((experience, index) => (

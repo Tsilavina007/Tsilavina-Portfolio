@@ -19,7 +19,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
   return (
     <Card
-      className="border border-github-light bg-github-medium hover:border-gray-500 transition-all-200 slide-up overflow-hidden shadow-md cursor-pointer"
+      className="p-4 border border-github-light bg-github-medium hover:border-gray-500 transition-all-200 slide-up overflow-hidden shadow-md cursor-pointer"
       onClick={handleClick}
     >
       <CardHeader className="pb-2 pt-4 px-4">
@@ -33,6 +33,19 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               {project.isPublic ? 'Public' : 'Private'}
             </div>
           </div>
+		  <div>
+		  {project.demoLink && (
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center text-github-blue text-xs hover:underline"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <ExternalLink size={12} className="mr-1" /> Live Demo
+            </a>
+          )}
+		  </div>
         </div>
       </CardHeader>
 	  <CardContent className="px-4 pt-1 pb-4">
@@ -76,19 +89,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </CardContent>
 
-      {(project.demoLink || project.repoLink) && (
+      {(project.repoLink) && (
         <CardFooter className="px-4 pt-4 pb-4 gap-3 border-t border-github-light bg-github-dark/30">
-          {project.demoLink && (
-            <a
-              href={project.demoLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center text-github-blue text-xs hover:underline"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <ExternalLink size={12} className="mr-1" /> Live Demo
-            </a>
-          )}
           {project.repoLink && (
             <a
               href={project.repoLink}
@@ -97,7 +99,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               className="flex items-center text-github-blue text-xs hover:underline"
               onClick={(e) => e.stopPropagation()}
             >
-              <Github size={12} className="mr-1" /> Repository
+              <Github size={12} className="mr-1" />View Repository
             </a>
           )}
         </CardFooter>

@@ -241,8 +241,8 @@ export const profileData: ProfileData = {
 	{
 		id: 1,
 		type: "Formation",
-		institution: "Wild Code School",
-		period: "2021 - 2022",
+		institution: "Haute Ecole D'informatique",
+		period: "2022 - En cours",
 		begin: "2021-09-13",
 		end: "2022-02-25",
 		description: "Formation Développeur Web et Web Mobile",
@@ -253,12 +253,12 @@ export const profileData: ProfileData = {
 	{
 		id: 2,
 		type: "Formation",
-		institution: "OpenClassrooms",
-		period: "2021 - 2022",
+		institution: "Ecole 42 Antananarivo",
+		period: "2024 - En cours",
 		begin: "2021-09-13",
 		end: "2022-02-25",
 		description: "Formation Développeur Web",
-		diplome: "Développeur Web",
+		diplome: "Développeur C",
 		institutionLogo: "/images.jpeg",
 		institutionLink: "https://openclassrooms.com/fr/"
 	},

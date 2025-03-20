@@ -27,12 +27,14 @@ import {
   DrawerDescription,
   DrawerFooter
 } from '@/components/ui/drawer';
-import { useMediaQuery } from '@/hooks/use-media-query';
+import { useIsMobile } from '@/hooks/use-mobile';
+interface isDisktopProps {
+	isDesktop: Boolean;
+}
 
-const ExperienceDetail: React.FC = () => {
+const ExperienceDetail: React.FC<isDisktopProps> = (isDesktop) => {
   const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
-  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const allExperiences = profileData.experiences;
   const experience = allExperiences.find(e => e.id.toString() === id);
@@ -45,6 +47,8 @@ const ExperienceDetail: React.FC = () => {
   if (!experience) {
     return null;
   }
+
+  const isMobile = useIsMobile();
 
   const content = (
     <div className="space-y-6">
@@ -103,6 +107,30 @@ const ExperienceDetail: React.FC = () => {
     </div>
   );
 
+  if (isMobile)
+	{
+		return (
+		  <Drawer open={true} onOpenChange={() => handleClose()}>
+			<DrawerContent className="bg-github-dark border-github-light text-github-text max-h-[90vh]">
+			  <DrawerHeader className="border-b border-github-light">
+				<DrawerTitle className="text-github-blue">Experience Details</DrawerTitle>
+				<DrawerDescription className="text-github-text">
+				  View detailed information about this experience
+				</DrawerDescription>
+			  </DrawerHeader>
+			  <div className="px-4 py-6 overflow-y-auto">
+				{content}
+			  </div>
+			  <DrawerFooter className="border-t border-github-light pt-2">
+				<Button onClick={handleClose} className="w-full bg-github-medium hover:bg-github-dark text-github-text">
+				  Close
+				</Button>
+			  </DrawerFooter>
+			</DrawerContent>
+		  </Drawer>
+		);
+	}
+
   if (isDesktop) {
     return (
       <Dialog open={true} onOpenChange={() => handleClose()}>
@@ -129,26 +157,7 @@ const ExperienceDetail: React.FC = () => {
     );
   }
 
-  return (
-    <Drawer onOpenChange={() => handleClose()}>
-      <DrawerContent className="bg-github-dark border-github-light text-github-text max-h-[90vh]">
-        <DrawerHeader className="border-b border-github-light">
-          <DrawerTitle className="text-github-blue">Experience Details</DrawerTitle>
-          <DrawerDescription className="text-github-text">
-            View detailed information about this experience
-          </DrawerDescription>
-        </DrawerHeader>
-        <div className="px-4 py-6 overflow-y-auto">
-          {content}
-        </div>
-        <DrawerFooter className="border-t border-github-light pt-2">
-          <Button onClick={handleClose} className="w-full bg-github-medium hover:bg-github-dark text-github-text">
-            Close
-          </Button>
-        </DrawerFooter>
-      </DrawerContent>
-    </Drawer>
-  );
+
 };
 
 export default ExperienceDetail;

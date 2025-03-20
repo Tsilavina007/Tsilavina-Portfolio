@@ -1,5 +1,4 @@
 
-import React from 'react';
 import Navbar from '@/components/Navbar';
 import ProfileSidebar from '@/components/ProfileSidebar';
 import TabNavigation from '@/components/TabNavigation';
@@ -11,22 +10,29 @@ import ProjectDetail from '@/components/ProjectDetail';
 import ExperienceDetail from '@/components/ExperienceDetail';
 import { useLocation, useParams } from 'react-router-dom';
 import FormationDetail from '@/components/FormationDetail';
+import { useMediaQuery } from '@/hooks/use-media-query';
+import ContactDetail from '@/components/ContactDetail';
 
 const Index = () => {
   const location = useLocation();
   const params = useParams();
+
+const isDesktop = useMediaQuery("(min-width: 768px)");
+
 
   const renderContent = () => {
     const path = location.pathname;
 
     // Check if we're viewing a project or experience detail
     if (path.startsWith('/project/')) {
-      return <ProjectDetail />;
+      return <ProjectDetail isDesktop={isDesktop}/>;
     } else if (path.startsWith('/experience/')) {
-      return <ExperienceDetail />;
+      return <ExperienceDetail isDesktop={isDesktop}/>;
     } else if (path.startsWith('/formation/')) {
-      return <FormationDetail />;
-    } else if (path.startsWith('/experiences')) {
+      return <FormationDetail isDesktop={isDesktop}/>;
+    } else if (path.startsWith('/contact/me')) {
+		return <ContactDetail isDesktop={isDesktop}/>;
+	} else if (path.startsWith('/experiences')) {
       return <Experiences />;
     } else if (path.startsWith('/projects')) {
       return <Projects />;

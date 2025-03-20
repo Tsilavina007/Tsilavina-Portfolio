@@ -59,7 +59,7 @@ const Formations = () => {
 	}, [formations, searchQuery, institution, sortBy]);
 
 	return (
-		<div className="w-full">
+		<div className="w-full pt-4">
 			<div className="flex flex-col space-y-4 mb-6">
 				<div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 md:space-x-4">
 					<div className="w-full md:w-auto flex-grow relative">

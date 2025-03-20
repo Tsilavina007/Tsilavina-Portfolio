@@ -87,7 +87,7 @@ const Projects = () => {
   }, [allProjects, searchQuery, language, sortBy]);
 
   return (
-    <div className="w-full">
+    <div className="w-full pt-4">
       <div className="flex flex-col space-y-4 mb-6">
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center space-y-4 md:space-y-0 md:space-x-4">
           <div className="w-full md:w-auto flex-grow relative">
@@ -174,7 +174,7 @@ const Projects = () => {
         )}
       </div>
 
-      <div className="space-y-4">
+      <div className="space-y-4 gap-2 ">
         {filteredProjects.length > 0 ? (
           filteredProjects.map((project, index) => (
             <div key={project.id} className={`slide-up ${index > 0 ? `delay-${Math.min(index, 3) * 100}` : ''}`}>
