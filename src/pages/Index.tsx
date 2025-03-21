@@ -12,11 +12,17 @@ import { useLocation, useParams } from 'react-router-dom';
 import FormationDetail from '@/components/FormationDetail';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import ContactDetail from '@/components/ContactDetail';
+import { useEffect, useState } from 'react';
 const Index = () => {
 	const location = useLocation();
 	const params = useParams();
-	const isDesktop = useMediaQuery("(min-width: 768px)");
-
+	// const isDesktop = useMediaQuery("(min-width: 768px)");
+	const [isDesktop, setIsMobile] = useState(window.innerWidth > 768);
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth > 768);
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 	const renderContent = () => {
 	  const path = location.pathname;
 
