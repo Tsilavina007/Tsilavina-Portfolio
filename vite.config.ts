@@ -9,8 +9,8 @@ export default defineConfig(() => ({
 	server:
 		{
 			port: Number(portd),
+			historyApiFallback: true,
 		},
-
 	plugins: [
 		[react()],
 
@@ -21,3 +21,4 @@ export default defineConfig(() => ({
 		},
 	},
 }));
+
