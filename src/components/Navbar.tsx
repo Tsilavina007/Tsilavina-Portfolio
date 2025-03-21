@@ -1,7 +1,6 @@
-
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Menu, Search, Plus, Bell, ChevronDown, Github, Linkedin, LinkedinIcon, User, Settings, FolderPlus, BadgePlus, PlusCircle } from 'lucide-react';
+import { Menu, Search, Plus, Bell, ChevronDown, Github, LinkedinIcon, User, Settings, PlusCircle, X } from 'lucide-react';
 import { Avatar } from '@/components/ui/avatar';
 import { profileData } from '@/utils/data';
 import TabNavigation from './TabNavigation';
@@ -10,14 +9,26 @@ const Navbar = () => {
 	const [isSearchFocused, setIsSearchFocused] = useState(false);
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 	const [isDropdownProfilOpen, setIsDropdownProfilOpen] = useState(false);
+	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+
+	// Mettre à jour `isMobile` lors du redimensionnement
+	useEffect(() => {
+		const handleResize = () => setIsMobile(window.innerWidth < 768);
+		window.addEventListener('resize', handleResize);
+		return () => window.removeEventListener('resize', handleResize);
+	}, []);
 
 	return (
-
-		<header className="bg-github-dark  py-4 px-4 lg:px-6 sticky top-0 z-50">
+		<header className="bg-github-dark py-4 px-4 lg:px-6 sticky top-0 z-50">
 			<div className="flex items-center justify-between mb-4">
 				<div className="flex items-center space-x-4">
-					<button className="p-2 rounded-md text-github-text hover:bg-github-light transition-all-200 md:hidden">
-						<Menu size={20} />
+					{/* Bouton Menu Mobile */}
+					<button
+						className="p-2 rounded-md text-github-text hover:bg-github-light transition-all-200 md:hidden"
+						onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+					>
+						{isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
 					</button>
 
 					<Link to="/" className="flex items-center space-x-2">
@@ -25,11 +36,12 @@ const Navbar = () => {
 						<span className="text-xl font-semibold text-white hidden md:inline-block">{profileData.username}</span>
 					</Link>
 
+					{/* Barre de recherche */}
 					<div className={`relative hidden md:block transition-all duration-300 ${isSearchFocused ? 'w-80' : 'w-64'}`}>
 						<input
 							type="text"
 							placeholder="Type / to search"
-							className="w-full bg-github-medium border border-github-light rounded-md py-1.5 px-3 pr-10 text-sm text-github-text placeholder-gray-500 focus:ring-1 focus:ring-github-blue focus:border-github-blue focus:w-full transition-all-200"
+							className="w-full bg-github-medium border border-github-light rounded-md py-1.5 px-3 pr-10 text-sm text-github-text placeholder-gray-500 focus:ring-1 focus:ring-github-blue focus:border-github-blue transition-all-200"
 							onFocus={() => setIsSearchFocused(true)}
 							onBlur={() => setIsSearchFocused(false)}
 						/>
@@ -50,6 +62,7 @@ const Navbar = () => {
 						<Bell size={20} />
 					</button>
 
+					{/* Dropdown Ajouter */}
 					<div className="relative md:block" onBlur={() => setIsDropdownOpen(false)} tabIndex={0}>
 						<button
 							className="flex items-center text-github-text hover:text-white transition-all-200"
@@ -75,6 +88,8 @@ const Navbar = () => {
 							</div>
 						)}
 					</div>
+
+					{/* Dropdown Profil */}
 					<div className="relative" onBlur={() => setIsDropdownProfilOpen(false)} tabIndex={0}>
 						<Link className="flex items-center text-github-text hover:text-white transition-all-200" onClick={() => setIsDropdownProfilOpen(!isDropdownProfilOpen)} to={''}>
 							<Avatar className="h-8 w-8 rounded-full overflow-hidden border border-github-light">
@@ -95,10 +110,22 @@ const Navbar = () => {
 							</div>
 						)}
 					</div>
-
 				</div>
 			</div>
-			<TabNavigation />
+
+			{/* Menu Mobile */}
+			{isMobileMenuOpen && (
+				<div className="md:hidden bg-github-medium p-4 rounded-lg shadow-md">
+					<TabNavigation />
+				</div>
+			)}
+
+			{/* Navigation Tabs Desktop */}
+			{!isMobile && (
+				<div className="w-full overflow-x-auto">
+					<TabNavigation />
+				</div>
+			)}
 		</header>
 	);
 };
