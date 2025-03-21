@@ -32,6 +32,11 @@ const ContactDetail: React.FC<isDesktopProps> = ({ isDesktop }) => {
   };
 
   const isMobile = useIsMobile();
+ // Lien par défaut pour ouvrir Gmail dans le navigateur (desktop)
+ const emailLink = "https://mail.google.com/mail/?view=cm&fs=1&to=andriamiart114@gmail.com";
+
+ // Lien pour les utilisateurs mobiles (utilisation du client de messagerie par défaut)
+ const mailtoLink = "mailto:andriamiart114@gmail.com";
 
   const content = (
     <div className="space-y-6">
@@ -39,7 +44,7 @@ const ContactDetail: React.FC<isDesktopProps> = ({ isDesktop }) => {
 
       <div className="space-y-4">
         <Button className="w-full bg-github-medium hover:bg-github-dark text-github-text flex items-center justify-center space-x-3">
-          <a href="mailto:andriamiart114@gmail.com" className="flex items-center space-x-3">
+          <a href={isMobile ? mailtoLink : emailLink} target={isMobile ? "_self" : "_blank"} className="flex items-center space-x-3">
             <Mail size={20} />
             <span>Send an Email</span>
           </a>
