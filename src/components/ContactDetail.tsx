@@ -51,7 +51,7 @@ const ContactDetail: React.FC<isDesktopProps> = ({ isDesktop }) => {
         </Button>
 
         <Button className="w-full bg-github-medium hover:bg-github-dark text-github-text flex items-center justify-center space-x-3">
-          <a href="tel:+1234567890" className="flex items-center space-x-3">
+          <a href="tel:+261343198402" className="flex items-center space-x-3">
             <Phone size={20} />
             <span>Call Me</span>
           </a>
