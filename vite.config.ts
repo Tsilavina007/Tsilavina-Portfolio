@@ -2,23 +2,15 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-const portd = process.env.PORT || '5173';
-
 export default defineConfig(() => ({
+  base: "/",
   server: {
-    port: Number(portd),
+    port: 5173,
   },
   plugins: [react()],
   resolve: {
     alias: {
       "@": path.resolve(__dirname, "./src"),
-    },
-  },
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-      },
     },
   },
 }));
